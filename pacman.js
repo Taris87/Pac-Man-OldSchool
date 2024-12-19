@@ -868,37 +868,55 @@ var PACMAN = (function () {
     };
 
     function drawFooter() {
-        
-        var topLeft  = (map.height * map.blockSize),
+        var topLeft = (map.height * map.blockSize),
             textBase = topLeft + 17;
+    
         
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, topLeft, (map.width * map.blockSize), 30);
-        
+    
+       
+        var totalWidth = map.width * map.blockSize;
+        var livesWidth = user.getLives() * (25 + map.blockSize); 
+        var centerX = totalWidth / 2;
+    
+        var scoreText = "Score: " + user.theScore();
+        var levelText = "Level: " + level;
+    
+        var scoreWidth = ctx.measureText(scoreText).width;
+        var levelWidth = ctx.measureText(levelText).width;
+    
+        var scoreX = centerX - livesWidth / 2 - scoreWidth - 30; 
+        var levelX = centerX + livesWidth / 2 + 35;  
+        var livesX = centerX - livesWidth / 2 + 40;
+    
+       
         ctx.fillStyle = "#FFFF00";
-
+        ctx.font = "14px BDCartoonShoutRegular";
+        ctx.fillText(scoreText, scoreX, textBase);
+    
+        
+        ctx.fillText(levelText, levelX, textBase);
+    
+       
         for (var i = 0, len = user.getLives(); i < len; i++) {
             ctx.fillStyle = "#FFFF00";
             ctx.beginPath();
-            ctx.moveTo(150 + (25 * i) + map.blockSize / 2,
-                       (topLeft+1) + map.blockSize / 2);
-            
-            ctx.arc(150 + (25 * i) + map.blockSize / 2,
-                    (topLeft+1) + map.blockSize / 2,
+            ctx.moveTo(livesX + (25 * i) + map.blockSize / 2,
+                       (topLeft + 1) + map.blockSize / 2);
+            ctx.arc(livesX + (25 * i) + map.blockSize / 2,
+                    (topLeft + 1) + map.blockSize / 2,
                     map.blockSize / 2, Math.PI * 0.25, Math.PI * 1.75, false);
             ctx.fill();
         }
-
+    
+        
         ctx.fillStyle = !soundDisabled() ? "#00FF00" : "#FF0000";
         ctx.font = "bold 16px sans-serif";
-        //ctx.fillText("♪", 10, textBase);
         ctx.fillText("s", 10, textBase);
-
-        ctx.fillStyle = "#FFFF00";
-        ctx.font      = "14px BDCartoonShoutRegular";
-        ctx.fillText("Score: " + user.theScore(), 30, textBase);
-        ctx.fillText("Level: " + level, 260, textBase);
     }
+    
+    
 
     function redrawBlock(pos) {
         map.drawBlock(Math.floor(pos.y/10), Math.floor(pos.x/10), ctx);

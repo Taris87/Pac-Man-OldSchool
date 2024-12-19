@@ -12,9 +12,11 @@
 	    font-style: normal;
       }
       #pacman {
-        height:450px;
-        width:342px;
+        height:750px;
+        width:542px;
         margin:20px auto;
+        justify-content: center;
+        
       }
       #shim { 
         font-family: BDCartoonShoutRegular; 
@@ -22,20 +24,21 @@
         visibility:hidden
       }
       h1 { font-family: BDCartoonShoutRegular; text-align:center; }
-      body { width:342px; margin:0px auto; font-family:sans-serif; }
-      a { text-decoration:none; }
+      body { width:542px; margin:0px auto; font-family:sans-serif; justify-content: center; justify-items: center; }
+      a { text-decoration:underline; color:#0000ff; }
+      span{color: #ffff00; background-color: gray; padding: 3px;}
     </style>
 
 </head>
 
-<body>
+<body style="background-color: rgb(242, 236, 236);">
   
   <div id="shim">shim for font face</div>
 
-  <h1>Pac-Man-OldSchool</h1>
+  <h1>Pac-Man-<span>Oldschool</span></h1>
 
-  <a href="http://arandomurl.com/">Writeup</a> |
-  Code on <a href="http://arandomurl.com/">Github</a>
+  <a href="https://Taris87.github.io/Pac-Man-OldSchool/">Writeup</a> |
+  Code on <a href="https://Taris87.github.io/Pac-Man-OldSchool/">Github</a>
 
   <div id="pacman"></div>
   <script src="pacman.js"></script>
